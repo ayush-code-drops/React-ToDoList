@@ -1,13 +1,22 @@
 import ToDoInput from "./ToDoInput";
-import Button from "./Button";
+import { useState } from "react";
 function ToDo() {
-  const handleAddClick = () => {
-    console.log("done");
+  const [todos, setTodos] = useState([]);
+  const handleTaskCreate = (title) => {
+    //console.log(title,"in Todo")
+    const payload = {
+      title: title,
+      status: false,
+      id: todos.length + 1
+    };
+    console.log(payload);
+    setTodos([...todos, payload]);
   };
+
+  console.log(todos);
   return (
     <>
-      <ToDoInput />
-      <Button title="Add" onClick={handleAddClick} />
+      <ToDoInput onTaskCreate={handleTaskCreate} />
     </>
   );
 }
